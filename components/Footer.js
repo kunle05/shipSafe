@@ -10,7 +10,7 @@ const Footer = () => {
             <Container>
                 <Row>
                     <Logo>
-                        <Link href="/">Ship Safe</Link>
+                        <Link href="/">Ship Ssafe</Link>
                     </Logo>
                     <Row>
                         <div>
