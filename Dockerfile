@@ -6,12 +6,13 @@ WORKDIR /usr/src/app
 
 COPY ["package.json", "package-lock.json", "./"]
 
+RUN npm ci
+
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN npm install
-
 RUN npm run build
 
 ENV NODE_ENV production
