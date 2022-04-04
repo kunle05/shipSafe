@@ -10,11 +10,13 @@ RUN npm ci
 RUN npm install --force
 
 COPY . .
-RUN ls
+RUN ls -a
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
 RUN npm run build
+
+
 
 EXPOSE 3000
 
