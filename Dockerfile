@@ -10,7 +10,7 @@ RUN npm ci
 RUN npm install --force
 
 COPY . .
-
+RUN ls
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
