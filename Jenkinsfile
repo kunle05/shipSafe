@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-      stage("Install app dependencies") {
+      stage("Install apps dependencies") {
         steps {
           sh "npm install"
         }
