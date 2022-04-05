@@ -14,14 +14,12 @@ RUN npm run build
 
 FROM node:16-alpine as runner
 WORKDIR /app
-COPY --from=builder /app/components ./components
-COPY --from=builder /app/lib ./lib
-COPY --from=builder /app/pages ./pages
+COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/config.js ./config.js
-COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+RUN ls -a
 
 EXPOSE 3000
 
