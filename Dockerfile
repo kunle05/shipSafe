@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM node:16-alpine as runner
 WORKDIR /app
-COPY --from=builder . .
+COPY --from=builder /app ./
 RUN ls -a
 
 EXPOSE 3000
