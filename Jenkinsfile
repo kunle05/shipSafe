@@ -33,7 +33,7 @@ pipeline {
     stage('Docker Run') {
       steps{
         script {
-          sh 'docker run -d -p 3000:3000 --rm --name shipSafe 904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps:shipSafe-v1.0'
+          sh 'docker run -d -p 80:3000 --rm --name shipSafe 904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps:shipSafe-v1.0'
         }
       }
     }
