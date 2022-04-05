@@ -5,7 +5,6 @@
 .gitignore
 .dockerignore
 npm-debug.log
-package-lock.json
 README.md
 Dockerfile
 Jenkinsfile
