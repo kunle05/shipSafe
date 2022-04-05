@@ -1,0 +1,8 @@
+Dockerfile
+Jenkinsfile
+.dockerignore
+npm-debug.log
+README.md
+.next
+.git
+*.
