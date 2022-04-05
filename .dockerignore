@@ -1,8 +1,11 @@
-Dockerfile
-Jenkinsfile
+.
+..
+.git
+.vscode
+.gitignore
 .dockerignore
 npm-debug.log
+package-lock.json
 README.md
-.next
-.git
-*.
+Dockerfile
+Jenkinsfile
