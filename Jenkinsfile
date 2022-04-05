@@ -1,21 +1,21 @@
 pipeline {
   stages {
     stage("Install app dependencies") {
-      step {
+      steps {
         script {
             sh "npm install"
         }
       }
     }       
     stage("Build app") {
-      step {
+      steps {
         script {
             sh "npm run build"
         }
       }
     }  
     stage("Deploy build") {
-      step {
+      steps {
         script {
             sh "cp -R components app/components"        
         }
