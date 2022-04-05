@@ -8,6 +8,7 @@ pipeline {
     stage("Build image") {
       steps {
         script {
+          sh 'docker image prune -a -f'
           dockerImage = docker.build registry
         }
       }
@@ -33,7 +34,6 @@ pipeline {
       steps{
         script {
           sh 'docker run -d -p 3000:3000 --rm --name shipSafe 904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps:shipSafe-v1.0'
-          sh 'docker image prune -a -f'
         }
       }
     }
