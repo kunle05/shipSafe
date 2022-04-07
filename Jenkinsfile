@@ -18,7 +18,7 @@ pipeline {
       steps("Authenticate registry") {
         script {
           sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 904941000330.dkr.ecr.us-east-2.amazonaws.com'
-          sh 'docker push $registry'
+          sh 'docker push $dockerImage'
         }
       }
     }
@@ -33,7 +33,7 @@ pipeline {
     stage('Docker Run') {
       steps{
         script {
-          sh 'docker run -d -p 80:3000 --rm --name shipSafe dockerImage'
+          sh 'docker run -d -p 80:3000 --rm --name shipSafe $dockerImage'
         }
       }
     }
