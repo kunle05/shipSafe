@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    registry = '$ecr-registry'
+    registry = "904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps"
   }
 
   stages {
@@ -17,7 +17,7 @@ pipeline {
     stage("Upload image to registry") {
       steps("Authenticate registry") {
         script {
-          sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ecr-registry'
+          sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 904941000330.dkr.ecr.us-east-2.amazonaws.com'
           sh 'docker push $registry'
         }
       }
@@ -33,7 +33,7 @@ pipeline {
     stage('Docker Run') {
       steps{
         script {
-          sh 'docker run -d -p 80:3000 --rm --name shipSafe $registry'
+          sh 'docker run -d -p 80:3000 --rm --name shipSafe dockerImage'
         }
       }
     }
