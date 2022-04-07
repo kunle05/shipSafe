@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    registry = 'ecr-registry'
+    registry = $ecr-registry
   }
 
   stages {
