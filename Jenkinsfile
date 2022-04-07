@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    registry = "904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps"
+    registry = "904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps:shipSafe-v1.0"
   }
 
   stages {
@@ -9,7 +9,7 @@ pipeline {
       steps {
         script {
           sh 'docker image prune -a -f'
-          dockerImage = docker.build registry + ":shipSafe-v1.0"
+          dockerImage = docker.build registry
         }
       }
     }
@@ -18,7 +18,7 @@ pipeline {
       steps("Authenticate registry") {
         script {
           sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 904941000330.dkr.ecr.us-east-2.amazonaws.com'
-          sh 'docker push $dockerImage'
+          sh 'docker push $registry'
         }
       }
     }
@@ -33,7 +33,7 @@ pipeline {
     stage('Docker Run') {
       steps{
         script {
-          sh 'docker run -d -p 80:3000 --rm --name shipSafe $dockerImage'
+          sh 'docker run -d -p 80:3000 --rm --name shipSafe $registry'
         }
       }
     }
