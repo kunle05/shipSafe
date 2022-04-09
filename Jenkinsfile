@@ -8,7 +8,6 @@ pipeline {
     stage("Build image") {
       steps {
         script {
-          sh 'docker image prune -a -f'
           dockerImage = docker.build registry
         }
       }
@@ -29,12 +28,28 @@ pipeline {
         sh 'docker container ls -a -fname=shipSafe -q | xargs -r docker container rm'
       }
     }
-      
-    stage('Docker Run') {
-      steps{
+
+    stage("Deploy to K8S") {
+      steps {
         script {
-          sh 'docker run -d -p 80:3000 --rm --name shipSafe $registry'
+          withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kkodes-k8-config', namespace: '', serverUrl: '') {
+            sh 'kubectl apply -f kube-config.yml'
+          }
         }
+      }
+    }
+      
+    // stage('Docker Run') {
+    //   steps{
+    //     script {
+    //       // sh 'docker run -d -p 80:3000 --rm --name shipSafe $registry'
+    //     }
+    //   }
+    // }
+    
+    stage('Remove Unused docker images') {
+      steps {
+        sh 'docker image prune -a -f'
       }
     }
   }
