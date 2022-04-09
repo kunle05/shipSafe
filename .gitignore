@@ -10,3 +10,5 @@ variables.env
 .keystone
 .vscode
 .gitignore
+*.yml
+*.yaml
