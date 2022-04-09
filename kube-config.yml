@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kkodes-shipSafe-deployment
+  name: kkodes-shipsafe-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: shipSafe
+      app: shipsafe
   template:
     metadata:
       labels:
-        app: shipSafe
+        app: shipsafe
     spec:
       containers:
-        - name: kkodes-shipSafe
+        - name: kkodes-shipsafe
           image: 904941000330.dkr.ecr.us-east-2.amazonaws.com/kkodes-apps:shipSafe-v1.0
           imagePullPolicy: Always
           ports:
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipSafe-svc
+  name: shipsafe-svc
 spec:
   selector:
-    app: shipSafe
+    app: shipsafe
   ports:
     - protocol: TCP
       port: 3000
