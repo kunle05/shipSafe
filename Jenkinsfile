@@ -46,9 +46,9 @@ pipeline {
     }
 
         
-    stage('Remove Unused docker images') {
+    stage('Remove created images') {
       steps {
-        sh 'docker image prune -a -f'
+        sh 'docker rmi $registry'
       }
     }
       
