@@ -5,11 +5,11 @@ pipeline {
   }
 
   stages {
-    stage('Remove Unused docker images') {
-      steps {
-        sh 'docker image prune -a -f'
-      }
-    }
+    // stage('Remove Unused docker images') {
+    //   steps {
+    //     sh 'docker image prune -a -f'
+    //   }
+    // }
 
     stage("Build image") {
       steps {
